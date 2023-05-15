@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
+import Addmovie from "./components/Addmovie";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -38,6 +39,9 @@ function App() {
     fetchMoviesList();
   }, [fetchMoviesList]);
 
+  function addMovieHandler(movie) {
+    console.log(movie);
+  }
   const memoziedMovieList = useMemo(
     () => <MoviesList movies={movies} />,
     [movies]
@@ -59,6 +63,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+        <Addmovie onAddMovie={addMovieHandler}/>
+      </section>
       <section>
         <button onClick={fetchMoviesList}>Fetch Movies</button>
       </section>
